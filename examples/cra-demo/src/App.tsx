@@ -6,6 +6,7 @@ import { WithReactHookForm } from './WithReactHookForm';
 import PaymentForm from './PaymentForm';
 import RecaptchaForm from './RecaptchaForm';
 import SimpleForm from './SimpleForm';
+import FormButton from './FormButton';
 
 enum Tab {
   React19 = 'react-19',
@@ -13,6 +14,7 @@ enum Tab {
   Recaptcha = 'recaptcha',
   Simple = 'simple',
   Stripe = 'stripe',
+  FormButton = 'form-button',
 }
 
 const App = () => {
@@ -58,6 +60,13 @@ const App = () => {
           >
             React 19
           </button>
+          <button
+            type="button"
+            className={`tab ${tab === Tab.FormButton && 'active'}`}
+            onClick={() => setTab(Tab.FormButton)}
+          >
+            Form Button
+          </button>
         </div>
         {tab === Tab.Stripe ? (
           <FormspreeProvider
@@ -71,6 +80,8 @@ const App = () => {
           <WithReactHookForm />
         ) : tab === Tab.React19 ? (
           <React19 />
+        ) : tab === Tab.FormButton ? (
+          <FormButton />
         ) : (
           <SimpleForm />
         )}
